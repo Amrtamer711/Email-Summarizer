@@ -23,10 +23,9 @@ services:
     plan: starter
     schedule: "*/5 * * * *"  # Every 5 minutes
     buildCommand: pip install -r requirements.txt
-    startCommand: python main.py
-    envVarGroups:
-      - email-digest-shared
+    command: python main.py
     envVars:
+      - fromGroup: email-digest-shared
       - key: USER_PROFILE
         value: amr
       - key: FROM_EMAIL
@@ -44,9 +43,8 @@ services:
     schedule: "0 5 * * *"  # 5:00 AM UTC = 9:00 AM UAE
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py morning
-    envVarGroups:
-      - email-digest-shared
     envVars:
+      - fromGroup: email-digest-shared
       - key: USER_PROFILE
         value: jawad
       - key: FROM_EMAIL
@@ -64,9 +62,8 @@ services:
     schedule: "0 10 * * *"  # 10:00 AM UTC = 2:00 PM UAE
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py afternoon
-    envVarGroups:
-      - email-digest-shared
     envVars:
+      - fromGroup: email-digest-shared
       - key: USER_PROFILE
         value: jawad
       - key: FROM_EMAIL

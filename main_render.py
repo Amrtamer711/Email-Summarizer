@@ -1,6 +1,6 @@
 import os
 import base64
-from main import *
+import re
 
 def graph_auth_render():
     """Modified graph_auth for Render deployment with secret files"""
@@ -70,4 +70,8 @@ def graph_auth_render():
 
 # Override the graph_auth function for Render
 if os.getenv('RENDER'):
-    graph_auth = graph_auth_render
+    import main
+    # Import the necessary constants from main
+    GRAPH_SCOPES = main.GRAPH_SCOPES
+    # Override the function
+    main.graph_auth = graph_auth_render

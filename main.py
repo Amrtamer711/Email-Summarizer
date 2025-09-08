@@ -15,13 +15,15 @@ load_dotenv()
 user_profile = os.getenv("USER_PROFILE")
 if user_profile:
     print(f"👤 Using USER_PROFILE: {user_profile}")
-    # Load user-specific .env file
-    user_env_file = f".env.{user_profile}"
-    if os.path.exists(user_env_file):
-        load_dotenv(user_env_file, override=True)
-        print(f"⚙️ Loaded user profile: {user_profile} ({os.path.abspath(user_env_file)})")
-    else:
-        print(f"⚠️ Warning: User profile file {user_env_file} not found. Using base .env")
+    # Only try to load .env files if not running on Render
+    if not os.getenv('RENDER'):
+        # Load user-specific .env file
+        user_env_file = f".env.{user_profile}"
+        if os.path.exists(user_env_file):
+            load_dotenv(user_env_file, override=True)
+            print(f"⚙️ Loaded user profile: {user_profile} ({os.path.abspath(user_env_file)})")
+        else:
+            print(f"⚠️ Warning: User profile file {user_env_file} not found. Using base .env")
 else:
     # Fallback to old behavior for backward compatibility
     _env_profile = (os.getenv("MSAL_PROFILE") or "").strip()
@@ -701,8 +703,7 @@ def main():
 
 # Import Render-specific modifications if running on Render
 if os.getenv('RENDER'):
-    from main_render import graph_auth_render
-    graph_auth = graph_auth_render
+    import main_render
 
 if __name__ == "__main__":
     main()

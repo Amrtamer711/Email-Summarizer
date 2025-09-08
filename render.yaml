@@ -6,7 +6,7 @@ services:
     plan: starter
     schedule: "*/5 * * * *"  # Every 5 minutes
     buildCommand: pip install -r requirements.txt
-    command: python main.py  # Regular 24-hour digest for testing
+    command: python main.py
     envVars:
       - key: RENDER
         value: "true"

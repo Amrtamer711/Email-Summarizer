@@ -6,7 +6,7 @@ services:
     plan: starter
     schedule: "*/5 * * * *"  # Every 5 minutes
     buildCommand: pip install -r requirements.txt
-    command: python main.py
+    startCommand: python main.py
     envVars:
       - key: RENDER
         value: "true"
@@ -36,7 +36,7 @@ services:
     plan: starter
     schedule: "0 5 * * *"  # 5:00 AM UTC = 9:00 AM UAE
     buildCommand: pip install -r requirements.txt
-    command: python main.py morning
+    startCommand: python main.py morning
     envVars:
       - key: RENDER
         value: "true"
@@ -66,7 +66,7 @@ services:
     plan: starter
     schedule: "0 10 * * *"  # 10:00 AM UTC = 2:00 PM UAE
     buildCommand: pip install -r requirements.txt
-    command: python main.py afternoon
+    startCommand: python main.py afternoon
     envVars:
       - key: RENDER
         value: "true"

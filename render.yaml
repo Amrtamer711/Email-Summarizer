@@ -7,8 +7,6 @@ services:
     schedule: "*/5 * * * *"  # Every 5 minutes
     buildCommand: pip install -r requirements.txt
     command: python main.py  # Regular 24-hour digest for testing
-    rootDir: .
-    dockerfilePath: ./Dockerfile
     envVars:
       - key: RENDER
         value: "true"
@@ -39,8 +37,6 @@ services:
     schedule: "0 5 * * *"  # 5:00 AM UTC = 9:00 AM UAE
     buildCommand: pip install -r requirements.txt
     command: python main.py morning
-    rootDir: .
-    dockerfilePath: ./Dockerfile
     envVars:
       - key: RENDER
         value: "true"
@@ -71,8 +67,6 @@ services:
     schedule: "0 10 * * *"  # 10:00 AM UTC = 2:00 PM UAE
     buildCommand: pip install -r requirements.txt
     command: python main.py afternoon
-    rootDir: .
-    dockerfilePath: ./Dockerfile
     envVars:
       - key: RENDER
         value: "true"

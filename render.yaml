@@ -1,5 +1,37 @@
 services:
-  # Cron job for morning email digest (9am UAE time = 5am UTC)
+  # TEST - Runs every 5 minutes for testing with amr
+  - type: cron
+    name: email-digest-test-amr
+    runtime: python
+    plan: starter
+    schedule: "*/5 * * * *"  # Every 5 minutes
+    buildCommand: pip install -r requirements.txt
+    command: python main.py  # Regular 24-hour digest for testing
+    rootDir: .
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: RENDER
+        value: "true"
+      - key: USER_PROFILE
+        value: amr
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: MSAL_TOKEN_CACHE_BASE64
+        sync: false
+      - key: FROM_EMAIL
+        value: amr@multiply.ae
+      - key: TO_EMAIL
+        value: amr@multiply.ae
+      - key: AZURE_CLIENT_ID
+        sync: false
+      - key: AZURE_TENANT_ID
+        sync: false
+      - key: EMAIL_FORMAT
+        value: modern
+      - key: REPLY_LINK_MODE
+        value: ""
+
+  # Cron job for morning email digest (9am UAE = 5am UTC)
   - type: cron
     name: email-digest-morning-jawad
     runtime: python
@@ -29,9 +61,9 @@ services:
       - key: EMAIL_FORMAT
         value: windows
       - key: REPLY_LINK_MODE
-        value: outlook_office
+        value: ""
 
-  # Cron job for afternoon email digest (2pm UAE time = 10am UTC)
+  # Cron job for afternoon email digest (2pm UAE = 10am UTC)
   - type: cron
     name: email-digest-afternoon-jawad
     runtime: python
@@ -61,4 +93,4 @@ services:
       - key: EMAIL_FORMAT
         value: windows
       - key: REPLY_LINK_MODE
-        value: outlook_office
+        value: ""

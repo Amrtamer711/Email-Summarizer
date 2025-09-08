@@ -1,3 +1,20 @@
+envVarGroups:
+  # Shared environment variables for all services
+  - name: email-digest-shared
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: AZURE_CLIENT_ID
+        sync: false
+      - key: AZURE_TENANT_ID
+        sync: false
+      - key: REPLY_LINK_MODE
+        value: ""
+      - key: APP_PSWD
+        sync: false
+      - key: RENDER
+        value: "true"
+
 services:
   # TEST - Runs every 5 minutes for testing with amr
   - type: cron
@@ -7,25 +24,17 @@ services:
     schedule: "*/5 * * * *"  # Every 5 minutes
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py
+    envVarGroups:
+      - email-digest-shared
     envVars:
-      - key: RENDER
-        value: "true"
       - key: USER_PROFILE
         value: amr
-      - key: OPENAI_API_KEY
-        sync: false
       - key: FROM_EMAIL
         value: amr@multiply.ae
       - key: TO_EMAIL
         value: amr@multiply.ae
-      - key: AZURE_CLIENT_ID
-        sync: false
-      - key: AZURE_TENANT_ID
-        sync: false
       - key: EMAIL_FORMAT
         value: modern
-      - key: REPLY_LINK_MODE
-        value: ""
 
   # Cron job for morning email digest (9am UAE = 5am UTC)
   - type: cron
@@ -35,25 +44,17 @@ services:
     schedule: "0 5 * * *"  # 5:00 AM UTC = 9:00 AM UAE
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py morning
+    envVarGroups:
+      - email-digest-shared
     envVars:
-      - key: RENDER
-        value: "true"
       - key: USER_PROFILE
         value: jawad
-      - key: OPENAI_API_KEY
-        sync: false
       - key: FROM_EMAIL
         value: jawad@multiply.ae
       - key: TO_EMAIL
         value: jawad@multiply.ae
-      - key: AZURE_CLIENT_ID
-        sync: false
-      - key: AZURE_TENANT_ID
-        sync: false
       - key: EMAIL_FORMAT
         value: windows
-      - key: REPLY_LINK_MODE
-        value: ""
 
   # Cron job for afternoon email digest (2pm UAE = 10am UTC)
   - type: cron
@@ -63,22 +64,14 @@ services:
     schedule: "0 10 * * *"  # 10:00 AM UTC = 2:00 PM UAE
     buildCommand: pip install -r requirements.txt
     startCommand: python main.py afternoon
+    envVarGroups:
+      - email-digest-shared
     envVars:
-      - key: RENDER
-        value: "true"
       - key: USER_PROFILE
         value: jawad
-      - key: OPENAI_API_KEY
-        sync: false
       - key: FROM_EMAIL
         value: jawad@multiply.ae
       - key: TO_EMAIL
         value: jawad@multiply.ae
-      - key: AZURE_CLIENT_ID
-        sync: false
-      - key: AZURE_TENANT_ID
-        sync: false
       - key: EMAIL_FORMAT
         value: windows
-      - key: REPLY_LINK_MODE
-        value: ""

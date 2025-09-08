@@ -14,8 +14,6 @@ services:
         value: amr
       - key: OPENAI_API_KEY
         sync: false
-      - key: MSAL_TOKEN_CACHE_BASE64
-        sync: false
       - key: FROM_EMAIL
         value: amr@multiply.ae
       - key: TO_EMAIL
@@ -44,8 +42,6 @@ services:
         value: jawad
       - key: OPENAI_API_KEY
         sync: false
-      - key: MSAL_TOKEN_CACHE_BASE64
-        sync: false
       - key: FROM_EMAIL
         value: jawad@multiply.ae
       - key: TO_EMAIL
@@ -73,8 +69,6 @@ services:
       - key: USER_PROFILE
         value: jawad
       - key: OPENAI_API_KEY
-        sync: false
-      - key: MSAL_TOKEN_CACHE_BASE64
         sync: false
       - key: FROM_EMAIL
         value: jawad@multiply.ae

@@ -1,0 +1,30 @@
+# Environment files
+.env
+.env.*
+
+# Token cache files
+msal_token_cache*.bin
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Test files
+test_*.py
+
+# Credentials
+creds.json
+client_secret*.json
+token.pkl

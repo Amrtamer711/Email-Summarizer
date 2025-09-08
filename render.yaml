@@ -1,0 +1,64 @@
+services:
+  # Cron job for morning email digest (9am UAE time = 5am UTC)
+  - type: cron
+    name: email-digest-morning-jawad
+    runtime: python
+    plan: starter
+    schedule: "0 5 * * *"  # 5:00 AM UTC = 9:00 AM UAE
+    buildCommand: pip install -r requirements.txt
+    command: python main.py morning
+    rootDir: .
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: RENDER
+        value: "true"
+      - key: USER_PROFILE
+        value: jawad
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: MSAL_TOKEN_CACHE_BASE64
+        sync: false
+      - key: FROM_EMAIL
+        value: jawad@multiply.ae
+      - key: TO_EMAIL
+        value: jawad@multiply.ae
+      - key: AZURE_CLIENT_ID
+        sync: false
+      - key: AZURE_TENANT_ID
+        sync: false
+      - key: EMAIL_FORMAT
+        value: windows
+      - key: REPLY_LINK_MODE
+        value: outlook_office
+
+  # Cron job for afternoon email digest (2pm UAE time = 10am UTC)
+  - type: cron
+    name: email-digest-afternoon-jawad
+    runtime: python
+    plan: starter
+    schedule: "0 10 * * *"  # 10:00 AM UTC = 2:00 PM UAE
+    buildCommand: pip install -r requirements.txt
+    command: python main.py afternoon
+    rootDir: .
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: RENDER
+        value: "true"
+      - key: USER_PROFILE
+        value: jawad
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: MSAL_TOKEN_CACHE_BASE64
+        sync: false
+      - key: FROM_EMAIL
+        value: jawad@multiply.ae
+      - key: TO_EMAIL
+        value: jawad@multiply.ae
+      - key: AZURE_CLIENT_ID
+        sync: false
+      - key: AZURE_TENANT_ID
+        sync: false
+      - key: EMAIL_FORMAT
+        value: windows
+      - key: REPLY_LINK_MODE
+        value: outlook_office

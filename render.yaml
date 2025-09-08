@@ -23,7 +23,7 @@ services:
     plan: starter
     schedule: "*/5 * * * *"  # Every 5 minutes
     buildCommand: pip install -r requirements.txt
-    command: python main.py
+    startCommand: python main.py
     envVars:
       - fromGroup: email-digest-shared
       - key: USER_PROFILE
